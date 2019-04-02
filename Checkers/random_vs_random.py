@@ -1,9 +1,9 @@
 import IN104_simulateur as simu
-from myAI import myAI
+from .randomBrain import RandomBrain
 
-brain1 = myAI()
+brain1 = RandomBrain()
 ai1_time = 1
-brain2 = myAI()
+brain2 = RandomBrain()
 ai2_time = 1
 game = simu.Game(brain1, ai1_time, brain2, ai2_time)
 game.displayLevel = 1   # this prints the board after each move
