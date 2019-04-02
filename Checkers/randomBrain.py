@@ -1,6 +1,7 @@
 import sys
 import random
 from .gameState import GameState
+from .move import Move
 
 class RandomBrain:
 
@@ -9,13 +10,13 @@ class RandomBrain:
         self.name = sys.stdin.readline()[0:-1]
         self.alwaysSeeAsWhite = False
 
-    def play(self, gameState):
+    def play(self, gameState, timeLimit):
         possibleMoves = gameState.findPossibleMoves()
-        print(gameState.toDisplay(True))
         list_moves = [m.toPDN() for m in possibleMoves]
-        choice = random.choice(list_moves)
+        string = random.choice(list_moves)
+        move = Move.fromPDN(string)
+        choice = gameState.doMove(move, inplace = False)
         return choice
-
 
     def __str__(self):
         return self.name
