@@ -28,7 +28,7 @@ def minimax (state, max_depth, maximize ,transposition_table={}) :
 
 
 	for node in children_list:
-		score = minimax(node, max_depth-1, bool ( (maximize+1)%2 ) )
+		score = minimax(node, max_depth-1, bool ( (maximize+1)%2 ) ,transposition_table)
 
 		if maximize :
 			if score > score_ref:
