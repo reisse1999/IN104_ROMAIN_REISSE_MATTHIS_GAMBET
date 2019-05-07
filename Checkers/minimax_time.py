@@ -1,11 +1,6 @@
 import time
-from MinimaxBrainAlphaBetaTime import MinimaxBrainABT
 
-brain = MinimaxBrainABT()
-delai = brain.delai
-
-
-def minimax_f(state, T, maximize, max_A, min_A):
+def minimax_f(state, T, maximize, max_A, min_A, delai):
     start = time.time()
     if(maximize == True):
         maximize0 = False
@@ -29,9 +24,9 @@ def minimax_f(state, T, maximize, max_A, min_A):
             length= length-1
             if(explo == 1):
                 if(len(G) != 0):
-                    G.append(minimax_f(child, Time_for_child, maximize0, max(G), min(G)))
+                    G.append(minimax_f(child, Time_for_child, maximize0, max(G), min(G), delai))
                 else:
-                    G.append(minimax_f(child, Time_for_child, maximize0, -1000000000, 1000000000))
+                    G.append(minimax_f(child, Time_for_child, maximize0, -1000000000, 1000000000, delai))
                 if(maximize == False):
                     if(G[i] < max_A):
                         explo = 0
@@ -43,9 +38,9 @@ def minimax_f(state, T, maximize, max_A, min_A):
                 delay = end-start
                 if(T-delay < delai):
                     if(maximize == True):
-                        return(max(A))
+                        return(max(G))
                     else:
-                        return(min(A)) 
+                        return(min(G)) 
     else:
         return(state.evaluate())  
     if(maximize == True):
@@ -54,7 +49,7 @@ def minimax_f(state, T, maximize, max_A, min_A):
         return(min(G))
 
 
-def minimax(state, T, maximize):
+def minimax(state, T, maximize, delai):
     start = time.time()
     if(maximize == True):
         maximize0 = False
@@ -72,9 +67,9 @@ def minimax(state, T, maximize):
             Time_for_child = (T-delay) / length
             length = length -1
             if(len(A) != 0):
-                A.append(minimax_f(child, Time_for_child, maximize0, max(A), min(A)))
+                A.append(minimax_f(child, Time_for_child, maximize0, max(A), min(A), delai))
             else:
-                A.append(minimax_f(child, Time_for_child, maximize0, -1000000000, 1000000000))
+                A.append(minimax_f(child, Time_for_child, maximize0, -1000000000, 1000000000, delai))
             end = time.time()
             delay = end-start
             if(T-delay < delai):
@@ -88,4 +83,3 @@ def minimax(state, T, maximize):
         return(max(A))
     else:
         return(min(A))
-        
