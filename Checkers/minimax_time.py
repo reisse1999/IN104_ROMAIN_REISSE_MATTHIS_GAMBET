@@ -12,8 +12,9 @@ def minimax_f(state, T, maximize, max_A, min_A):
     else:
         maximize0 = True
         
-    children_list = state.get_children()    
-    if(len(children_list) == 0):
+    children_list = state.get_children()
+    length = len (children_list)
+    if(length== 0):
         return(state.evaluate())
     G = []
     explo = 1
@@ -21,12 +22,14 @@ def minimax_f(state, T, maximize, max_A, min_A):
     end = time.time()
     delay = end-start
     if(T-delay > delai):
-        for children in children_list:
+        for child in children_list:
+            Time_for_child = (T-delay)/length
+            length= length-1
             if(explo == 1):
                 if(len(G) != 0):
-                    G.append(minimax_f(children, T-delay, maximize0, max(G), min(G)))
+                    G.append(minimax_f(child, Time_for_child, maximize0, max(G), min(G)))
                 else:
-                    G.append(minimax_f(children, T-delay, maximize0, -1000000000, 1000000000))
+                    G.append(minimax_f(child, T-delay, maximize0, -1000000000, 1000000000))
                 if(maximize == False):
                     if(G[i] < max_A):
                         explo = 0
@@ -56,17 +59,24 @@ def minimax(state, T, maximize):
     else:
         maximize0 = True
     A = []
+    children_list = state.get_children()
     end = time.time()
     delay = end-start
-    if(T-delay > delai):
-        for children in state.get_children():
+    T = T-delay
+    start = time.time()
+    length = len(children_list)
+    if(T > delai):
+        for child in children_list:
+            Time_for_child = T / length
+            length = length -1
             if(len(A) != 0):
-                A.append(minimax_f(children, T-delay-delai, maximize0, max(A), min(A)))
+                A.append(minimax_f(child, Time_for_child, maximize0, max(A), min(A)))
             else:
-                A.append(minimax_f(children, T-delay-delai, maximize0, -1000000000, 1000000000))
+                A.append(minimax_f(child, T-delay-delai, maximize0, -1000000000, 1000000000))
             end = time.time()
             delay = end-start
-            if(T-delay < delai):
+            T = T - delay
+            if(T < delai):
                 if(maximize == True):
                     return(max(A))
                 else:
