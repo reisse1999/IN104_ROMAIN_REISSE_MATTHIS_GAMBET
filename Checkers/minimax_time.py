@@ -60,6 +60,8 @@ def minimax(state, T, maximize, delai):
     end = time.time()
     delay = end-start  
     length = len(children_list)
+    if(length == 0):
+        return(state.evaluate())
     if(T -delay> delai):
         for child in children_list:
             end = time.time()
