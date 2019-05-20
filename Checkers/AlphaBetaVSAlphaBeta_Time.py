@@ -1,7 +1,6 @@
 import IN104_simulateur as simu
 from MinimaxBrainAlphaBetaTime import MinimaxBrainABT
 from MinimaxBrainAlphaBeta import MinimaxBrainAB
-from game import Game
 
 brain1 = MinimaxBrainABT(simu.game.Game.defaultConfig, simu.game.Game.defaultRules)
 brain2 = MinimaxBrainAB()
