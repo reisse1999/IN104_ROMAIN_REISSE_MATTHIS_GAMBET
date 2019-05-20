@@ -8,7 +8,7 @@ import time
 class MinimaxBrainABT:
     def __init__(self, config, rules):
         self.name = "MinimaxAlphaBetaBrainTime" # set your AI name here
-        self.time = 5
+        self.time = 1
         Etat = simu.GameState(config, rules)
         debut = time.time()
         Etat_suivant = Etat.findNextStates()
@@ -20,12 +20,22 @@ class MinimaxBrainABT:
         possibleStates = gameState.findNextStates()
         T = []
         max_T = -10000000000
+        n = len(possibleStates)
+        temps_T = (self.time)-(self.delai)
+        temps = (temps_T)/(n)
+        i = 0
         for state in possibleStates:
-            Mini = minimax(state, self.time, True, self.delai)
+            debut = time.time()
+            Mini = minimax(state, temps, True, self.delai)
             if(Mini > max_T):
                 chosen = state
             T.append(Mini)
             max_T = max(T)
+            fin = time.time()
+            temps_T -= (fin-debut)
+            i += 1
+            if(i != n):
+                temps = (temps_T)/(n-i)
         return(chosen)
 
 
