@@ -1,13 +1,12 @@
 import sys
 import random
-from .gameState import GameState
-from .move import Move
+from IN104_simulateur.gameState import GameState
+from IN104_simulateur.move import Move
 
 class RandomBrain:
 
     def __init__(self):
-        print("Please enter your name")
-        self.name = sys.stdin.readline()[0:-1]
+        self.name = "RandomBrain"
         self.alwaysSeeAsWhite = False
 
     def play(self, gameState, timeLimit):
