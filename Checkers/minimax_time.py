@@ -1,7 +1,9 @@
 import time
 
-def minimax_f(state, T, maximize, max_A, min_A, delai):
+def minimax_f(state, T, maximize, max_A, min_A, delai, transposition_table={}):
     start = time.time()
+    if state in transposition_table :
+	    return transposition_table [state]
     if(maximize == True):
         maximize0 = False
     else:
@@ -24,9 +26,9 @@ def minimax_f(state, T, maximize, max_A, min_A, delai):
             length= length-1
             if(explo == 1):
                 if(len(G) != 0):
-                    G.append(minimax_f(child, Time_for_child, maximize0, max(G), min(G), delai))
+                    G.append(minimax_f(child, Time_for_child, maximize0, max(G), min(G), delai,transposition_table))
                 else:
-                    G.append(minimax_f(child, Time_for_child, maximize0, -1000000000, 1000000000, delai))
+                    G.append(minimax_f(child, Time_for_child, maximize0, -1000000000, 1000000000, delai,transposition_table))
                 if(maximize == False):
                     if(G[i] < max_A):
                         explo = 0
@@ -38,9 +40,13 @@ def minimax_f(state, T, maximize, max_A, min_A, delai):
                 delay = end-start
                 if(T-delay < delai):
                     if(maximize == True):
-                        return(max(G))
+                        res = max(G)
+                        transopsition_table[state] = res
+                        return(res)
                     else:
-                        return(min(G)) 
+                        res = min(G)
+                        transopsition_table[state] = res
+                        return(res) 
     else:
         return(state.evaluate())  
     if(maximize == True):
