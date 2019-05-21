@@ -3,9 +3,10 @@ from MinimaxBrainAlphaBetaTime import MinimaxBrainABT
 from MinimaxBrainAlphaBeta import MinimaxBrainAB
 
 brain1 = MinimaxBrainABT(simu.game.Game.defaultConfig, simu.game.Game.defaultRules)
+brain1_time = 0.5
 brain2 = MinimaxBrainAB()
-ai_time = 10 #the AI will only have 1 sec to play
-game = simu.Game(brain1, brain1.time, brain2, ai_time)
+brain2_time = 0.5 #the AI will only have 1 sec to play
+game = simu.Game(brain1, brain1_time, brain2, brain2_time)
 game.displayLevel = 1   # this prints the board after each move
 game.runGame()
 print(game.pdn) #print the summary of the game.
