@@ -1,8 +1,6 @@
 import IN104_simulateur as simu
 from evaluation import evaluate
 from minimax_time import minimax
-simu.GameState.get_children = simu.GameState.findNextStates
-simu.GameState.evaluate = evaluate
 import time
 
 class MinimaxBrainABT:
@@ -25,7 +23,7 @@ class MinimaxBrainABT:
         i = 0
         for state in possibleStates:
             debut = time.time()
-            Mini = minimax(state, temps, True, self.delai)
+            Mini = minimax(state, temps, True, simu.GameState.findNextStates, evaluate, self.delai)
             if(Mini > max_T):
                 chosen = state
             T.append(Mini)
