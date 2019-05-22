@@ -4,7 +4,6 @@ Cell = simu.Cell
 
 def evaluate (gS):
 	boardState = gS.boardState
-	
 	nber_black = 0
 	nber_white = 0
 	cells = boardState.cells
@@ -14,4 +13,3 @@ def evaluate (gS):
 		if Cell.isWhite(cell):
 			nber_white+=1
 	return (nber_white - nber_black)
-
