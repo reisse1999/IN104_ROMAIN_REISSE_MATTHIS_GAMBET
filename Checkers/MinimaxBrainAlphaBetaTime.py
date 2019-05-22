@@ -4,7 +4,7 @@ from minimax_time import minimax
 import time
 
 class MinimaxBrainABT:
-    def __init__(self, config, rules):
+    def __init__(self, config=None, rules=None):
         self.name = "MinimaxAlphaBetaBrainTime" # set your AI name here
         Etat = simu.GameState(config, rules)
         debut = time.time()
