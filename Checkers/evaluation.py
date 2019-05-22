@@ -1,7 +1,6 @@
 import IN104_simulateur as simu 
 Cell = simu.Cell
 
-
 def evaluate (gS):
 	boardState = gS.boardState
 	nber_black = 0
@@ -18,4 +17,4 @@ def evaluate (gS):
 			nber_white+=1
 			if Cell.isKing(cell):
 				nberK_white+=1
-	return (nber_white - nber_black + 2*(nberK_white-nberK_black))   #une dame compte pour 3 pions (coefficient deux car les dames sont comptées aussi pour des pions)
+	return (nber_white - nber_black + 2*(nberK_white-nberK_black)) #une dame compte pour 3 pions (coefficient deux car les dames sont comptées aussi pour des pions)
